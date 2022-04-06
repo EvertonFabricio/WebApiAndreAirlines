@@ -35,7 +35,25 @@ namespace Passageiro.Controllers
         [HttpPost]
         public ActionResult<Model.Passageiro> Create(Model.Passageiro passageiro)
         {
-            _passageiroServicos.Create(passageiro);
+            var checar = _passageiroServicos.ChecarCpf(passageiro.Cpf);
+            var validar = _passageiroServicos.ValidarCpf(passageiro.Cpf);
+
+            if (validar == true)
+            {
+                if (checar == null)
+                {
+                    _passageiroServicos.Create(passageiro);
+                }
+                else
+                {
+                    return Conflict("CPF já esta cadastrado");
+                }
+            }
+            else
+            {
+                return Conflict("CPF invalido");
+            }
+
             return CreatedAtRoute("GetPassageiro", new { id = passageiro.Id.ToString() }, passageiro);
         }
 

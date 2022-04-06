@@ -36,13 +36,23 @@ namespace Aeroporto.Controllers
         [HttpPost]
         public ActionResult<Model.Aeroporto> Create(Model.Aeroporto aeroporto)
         {
-            _aeroportoServicos.Create(aeroporto);
+            var codigo = _aeroportoServicos.ChecarIata(aeroporto.Iata);
+
+            if (codigo == null)
+            {
+                _aeroportoServicos.Create(aeroporto);
+            }
+            else
+            {
+                return NotFound();
+            }
+
 
             return CreatedAtRoute("GetAeroporto", new { id = aeroporto.Id.ToString() }, aeroporto);
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Model.Aeroporto uoAeroporto)
+        public IActionResult Update(string id, Model.Aeroporto upAeroporto)
         {
             var aeroporto = _aeroportoServicos.Get(id);
 
@@ -51,7 +61,7 @@ namespace Aeroporto.Controllers
                 return NotFound();
             }
 
-            _aeroportoServicos.Update(id, aeroporto);
+            _aeroportoServicos.Update(id, upAeroporto);
 
             return NoContent();
         }

@@ -8,6 +8,7 @@ namespace Model
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
+        public string Registro { get; set; }
         public string Nome { get; set; }
         public int Capacidade { get; set; }
 

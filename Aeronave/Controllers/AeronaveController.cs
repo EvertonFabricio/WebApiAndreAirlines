@@ -36,7 +36,16 @@ namespace Aeronave.Controllers
         [HttpPost]
         public ActionResult<Model.Aeronave> Create(Model.Aeronave aeronave)
         {
-            _aeronaveServicos.Create(aeronave);
+            var registro = _aeronaveServicos.ChecarRegistro(aeronave.Registro);
+
+            if (registro == null)
+            {
+                _aeronaveServicos.Create(aeronave);
+            }
+            else
+            {
+                return NotFound();
+            }
 
             return CreatedAtRoute("GetAeronave", new { id = aeronave.Id.ToString() }, aeronave);
         }

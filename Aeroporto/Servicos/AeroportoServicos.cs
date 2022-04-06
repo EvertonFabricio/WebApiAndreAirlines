@@ -17,24 +17,26 @@ namespace Aeroporto.Servicos
         }
 
         public List<Model.Aeroporto> Get() =>
-            _aeroporto.Find(airport => true).ToList();
+            _aeroporto.Find(aeroporto => true).ToList();
 
         public Model.Aeroporto Get(string id) =>
-            _aeroporto.Find<Model.Aeroporto>(aircraft => aircraft.Id == id).FirstOrDefault();
+            _aeroporto.Find(aeroporto => aeroporto.Id == id).FirstOrDefault();
 
-        public Model.Aeroporto Create(Model.Aeroporto aeroportp)
+        public Model.Aeroporto Create(Model.Aeroporto aeroporto)
         {
-            _aeroporto.InsertOne(aeroportp);
-            return aeroportp;
+            _aeroporto.InsertOne(aeroporto);
+            return aeroporto;
         }
+        public Model.Aeroporto ChecarIata(string Iata) =>
+           _aeroporto.Find(aeroporto => aeroporto.Iata == Iata).FirstOrDefault();
 
-        public void Update(string id, Model.Aeroporto upAirport)
+        public void Update(string id, Model.Aeroporto upAeroporto)
         {
-            _aeroporto.ReplaceOne(airport => airport.Id == id, upAirport);
+            _aeroporto.ReplaceOne(aeroporto => aeroporto.Id == id, upAeroporto);
         }
 
         public void Remove(string id) =>
-            _aeroporto.DeleteOne(airport => airport.Id == id);
+            _aeroporto.DeleteOne(aeroporto => aeroporto.Id == id);
 
 
     }

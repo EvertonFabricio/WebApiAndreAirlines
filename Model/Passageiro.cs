@@ -13,6 +13,7 @@ namespace Model
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
+        public string Cpf { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }
 

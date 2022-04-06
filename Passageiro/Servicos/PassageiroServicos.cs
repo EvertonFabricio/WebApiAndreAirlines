@@ -21,7 +21,7 @@ namespace Passageiro.Servicos
             _passageiro.Find(passageiro => true).ToList();
 
         public Model.Passageiro Get(string id) =>
-            _passageiro.Find<Model.Passageiro>(passageiro => passageiro.Id == id).FirstOrDefault();
+            _passageiro.Find(passageiro => passageiro.Id == id).FirstOrDefault();
 
         public Model.Passageiro Create(Model.Passageiro passageiro)
         {
@@ -29,12 +29,49 @@ namespace Passageiro.Servicos
             return passageiro;
         }
 
+        public Model.Passageiro ChecarCpf(string CPF) =>
+            _passageiro.Find(passageiro => passageiro.Cpf == CPF).FirstOrDefault();
+
         public void Update(string id, Model.Passageiro passageiro) =>        
             _passageiro.ReplaceOne(passageiro => passageiro.Id == id, passageiro);
         
 
         public void Remove(string id) =>
             _passageiro.DeleteOne(passageiro => passageiro.Id == id);
-        
+
+        public bool ValidarCpf(string cpf)
+        {
+            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            string tempCpf;
+            string digito;
+            int soma;
+            int resto;
+            if (cpf.Length != 11)
+                return false;
+            tempCpf = cpf.Substring(0, 9);
+            soma = 0;
+
+            for (int i = 1; i < 10; i++)
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
+            resto = soma % 11;
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+            digito = resto.ToString();
+            tempCpf = tempCpf + digito;
+            soma = 0;
+            for (int i = 0; i < 10; i++)
+                soma += int.Parse(tempCpf[i].ToString()) * multiplicador2[i];
+            resto = soma % 11;
+            if (resto < 2)
+                resto = 0;
+            else
+                resto = 11 - resto;
+            digito = digito + resto.ToString();
+            return cpf.EndsWith(digito);
+        }
+
     }
 }

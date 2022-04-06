@@ -3,37 +3,39 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aeronave", "Aeronave\Aeronave.csproj", "{066254DD-9292-4A48-9E6C-9FE6F94167C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aeronave", "Aeronave\Aeronave.csproj", "{066254DD-9292-4A48-9E6C-9FE6F94167C3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{126969C2-8C68-471B-B4A1-A61F808B15B4} = {126969C2-8C68-471B-B4A1-A61F808B15B4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aeroporto", "Aeroporto\Aeroporto.csproj", "{1BB8CCE0-2C0F-4F0B-990D-6093F0546786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aeroporto", "Aeroporto\Aeroporto.csproj", "{1BB8CCE0-2C0F-4F0B-990D-6093F0546786}"
 	ProjectSection(ProjectDependencies) = postProject
 		{126969C2-8C68-471B-B4A1-A61F808B15B4} = {126969C2-8C68-471B-B4A1-A61F808B15B4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrecoBase", "PrecoBase\PrecoBase.csproj", "{0A4103C9-6094-4040-BFF6-217575D4BB06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrecoBase", "PrecoBase\PrecoBase.csproj", "{0A4103C9-6094-4040-BFF6-217575D4BB06}"
 	ProjectSection(ProjectDependencies) = postProject
 		{126969C2-8C68-471B-B4A1-A61F808B15B4} = {126969C2-8C68-471B-B4A1-A61F808B15B4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Voo", "Voo\Voo.csproj", "{4190BFCB-8FE5-42D7-A71A-472EDADA5692}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Voo", "Voo\Voo.csproj", "{4190BFCB-8FE5-42D7-A71A-472EDADA5692}"
 	ProjectSection(ProjectDependencies) = postProject
 		{126969C2-8C68-471B-B4A1-A61F808B15B4} = {126969C2-8C68-471B-B4A1-A61F808B15B4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passageiro", "Passageiro\Passageiro.csproj", "{18A3BBB1-58CC-4619-99E1-AB564149CEC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Passageiro", "Passageiro\Passageiro.csproj", "{18A3BBB1-58CC-4619-99E1-AB564149CEC1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{126969C2-8C68-471B-B4A1-A61F808B15B4} = {126969C2-8C68-471B-B4A1-A61F808B15B4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reserva", "Reserva\Reserva.csproj", "{8281BB0A-58CD-477E-B606-B4BA4A76DB96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reserva", "Reserva\Reserva.csproj", "{8281BB0A-58CD-477E-B606-B4BA4A76DB96}"
 	ProjectSection(ProjectDependencies) = postProject
 		{126969C2-8C68-471B-B4A1-A61F808B15B4} = {126969C2-8C68-471B-B4A1-A61F808B15B4}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{126969C2-8C68-471B-B4A1-A61F808B15B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{126969C2-8C68-471B-B4A1-A61F808B15B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportarCsv", "ImportarCsv\ImportarCsv.csproj", "{9C788FE8-30A3-4065-A29C-ABD844C53B19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{126969C2-8C68-471B-B4A1-A61F808B15B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{126969C2-8C68-471B-B4A1-A61F808B15B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{126969C2-8C68-471B-B4A1-A61F808B15B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C788FE8-30A3-4065-A29C-ABD844C53B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C788FE8-30A3-4065-A29C-ABD844C53B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C788FE8-30A3-4065-A29C-ABD844C53B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C788FE8-30A3-4065-A29C-ABD844C53B19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
