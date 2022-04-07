@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
@@ -33,16 +34,16 @@ namespace Passageiro.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Model.Passageiro> Create(Model.Passageiro passageiro)
+        public async Task<ActionResult<Model.Passageiro>> Create(Model.Passageiro passageiro)
         {
             var checar = _passageiroServicos.ChecarCpf(passageiro.Cpf);
             var validar = _passageiroServicos.ValidarCpf(passageiro.Cpf);
-
+        
             if (validar == true)
             {
                 if (checar == null)
                 {
-                    _passageiroServicos.Create(passageiro);
+                    passageiro = await _passageiroServicos.CreateAsync(passageiro);
                 }
                 else
                 {

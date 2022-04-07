@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Model;
 using MongoDB.Driver;
 using Passageiro.Util;
@@ -23,12 +24,28 @@ namespace Passageiro.Servicos
         public Model.Passageiro Get(string CPF) =>
             _passageiro.Find(passageiro => passageiro.Cpf == CPF.Replace(".", "").Replace("-", "")).FirstOrDefault();
 
-        public Model.Passageiro Create(Model.Passageiro passageiro)
+
+        public async Task<Model.Passageiro> CreateAsync(Model.Passageiro passageiro)
         {
-            passageiro.Cpf = passageiro.Cpf.Replace(".", "").Replace("-","");
+            if (passageiro.Endereco.Logradouro == null)
+            {
+                var enderecoSite = await BuscaCep.ViaCep(passageiro.Endereco.Cep);
+
+                if (enderecoSite != null)
+                {
+                    passageiro.Endereco.Logradouro = enderecoSite.Logradouro;
+                    passageiro.Endereco.Bairro = enderecoSite.Bairro;
+                    passageiro.Endereco.Localidade = enderecoSite.Localidade;
+                    passageiro.Endereco.Uf = enderecoSite.Uf;
+                }
+            }
+           
+            passageiro.Cpf = passageiro.Cpf.Replace(".", "").Replace("-", "");
             _passageiro.InsertOne(passageiro);
             return passageiro;
         }
+
+
 
         public Model.Passageiro ChecarCpf(string CPF) =>
             _passageiro.Find(passageiro => passageiro.Cpf == CPF).FirstOrDefault();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Aeroporto.Servicos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,14 +35,14 @@ namespace Aeroporto.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Model.Aeroporto> Create(Model.Aeroporto aeroporto)
+        public async Task<ActionResult<Model.Aeroporto>> Create(Model.Aeroporto aeroporto)
         {
             var verificacao = _aeroportoServicos.ChecarIata(aeroporto.Iata);
 
             if (verificacao == null)
             {
                 aeroporto.Iata = aeroporto.Iata.ToUpper();
-                _aeroportoServicos.Create(aeroporto);
+                aeroporto = await _aeroportoServicos.CreateAsync(aeroporto);
             }
             else
             {

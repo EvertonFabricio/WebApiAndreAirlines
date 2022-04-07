@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Aeroporto.Servicos
 {
@@ -22,8 +23,21 @@ namespace Aeroporto.Servicos
         public Model.Aeroporto Get(string Iata) =>
             _aeroporto.Find(aeroporto => aeroporto.Iata == Iata.ToUpper()).FirstOrDefault();
 
-        public Model.Aeroporto Create(Model.Aeroporto aeroporto)
+        public async Task<Model.Aeroporto> CreateAsync(Model.Aeroporto aeroporto)
         {
+            if (aeroporto.Endereco.Logradouro == null)
+            {
+                var enderecoSite = await BuscaCep.ViaCep(aeroporto.Endereco.Cep);
+
+                if (enderecoSite.Logradouro != null)
+                {
+                    aeroporto.Endereco.Logradouro = enderecoSite.Logradouro;
+                    aeroporto.Endereco.Bairro = enderecoSite.Bairro;
+                    aeroporto.Endereco.Localidade = enderecoSite.Localidade;
+                    aeroporto.Endereco.Uf = enderecoSite.Uf;
+                }
+               
+            }
             _aeroporto.InsertOne(aeroporto);
             return aeroporto;
         }
