@@ -20,14 +20,14 @@ namespace Aeroporto.Controllers
         public ActionResult<List<Model.Aeroporto>> Get() =>
             _aeroportoServicos.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetAeroporto")]
-        public ActionResult<Model.Aeroporto> Get(string id)
+        [HttpGet("Iata", Name = "GetAeroporto")]
+        public ActionResult<Model.Aeroporto> Get(string Iata)
         {
-            var aeroporto = _aeroportoServicos.Get(id);
+            var aeroporto = _aeroportoServicos.Get(Iata);
 
             if (aeroporto == null)
             {
-                return NotFound();
+                return NotFound("Aeroporto não encontrado.");
             }
 
             return aeroporto;
@@ -36,15 +36,16 @@ namespace Aeroporto.Controllers
         [HttpPost]
         public ActionResult<Model.Aeroporto> Create(Model.Aeroporto aeroporto)
         {
-            var codigo = _aeroportoServicos.ChecarIata(aeroporto.Iata);
+            var verificacao = _aeroportoServicos.ChecarIata(aeroporto.Iata);
 
-            if (codigo == null)
+            if (verificacao == null)
             {
+                aeroporto.Iata = aeroporto.Iata.ToUpper();
                 _aeroportoServicos.Create(aeroporto);
             }
             else
             {
-                return NotFound();
+                return Conflict("Não foi possível concluir o cadastro, pois o aeroporto informado já está cadastrado. Tente novamente.");
             }
 
 

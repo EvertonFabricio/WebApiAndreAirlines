@@ -19,8 +19,8 @@ namespace Aeroporto.Servicos
         public List<Model.Aeroporto> Get() =>
             _aeroporto.Find(aeroporto => true).ToList();
 
-        public Model.Aeroporto Get(string id) =>
-            _aeroporto.Find(aeroporto => aeroporto.Id == id).FirstOrDefault();
+        public Model.Aeroporto Get(string Iata) =>
+            _aeroporto.Find(aeroporto => aeroporto.Iata == Iata.ToUpper()).FirstOrDefault();
 
         public Model.Aeroporto Create(Model.Aeroporto aeroporto)
         {
@@ -28,7 +28,7 @@ namespace Aeroporto.Servicos
             return aeroporto;
         }
         public Model.Aeroporto ChecarIata(string Iata) =>
-           _aeroporto.Find(aeroporto => aeroporto.Iata == Iata).FirstOrDefault();
+           _aeroporto.Find(aeroporto => aeroporto.Iata == Iata.ToUpper()).FirstOrDefault();
 
         public void Update(string id, Model.Aeroporto upAeroporto)
         {

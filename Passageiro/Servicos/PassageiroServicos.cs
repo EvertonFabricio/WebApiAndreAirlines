@@ -20,11 +20,12 @@ namespace Passageiro.Servicos
         public List<Model.Passageiro> Get() =>
             _passageiro.Find(passageiro => true).ToList();
 
-        public Model.Passageiro Get(string id) =>
-            _passageiro.Find(passageiro => passageiro.Id == id).FirstOrDefault();
+        public Model.Passageiro Get(string CPF) =>
+            _passageiro.Find(passageiro => passageiro.Cpf == CPF.Replace(".", "").Replace("-", "")).FirstOrDefault();
 
         public Model.Passageiro Create(Model.Passageiro passageiro)
         {
+            passageiro.Cpf = passageiro.Cpf.Replace(".", "").Replace("-","");
             _passageiro.InsertOne(passageiro);
             return passageiro;
         }
@@ -39,7 +40,7 @@ namespace Passageiro.Servicos
         public void Remove(string id) =>
             _passageiro.DeleteOne(passageiro => passageiro.Id == id);
 
-        public bool ValidarCpf(string cpf)
+        public bool ValidarCpf(string CPF)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -47,12 +48,14 @@ namespace Passageiro.Servicos
             string digito;
             int soma;
             int resto;
-            if (cpf.Length != 11)
+            CPF = CPF.Trim();
+            CPF = CPF.Replace(".", "").Replace("-", "");
+            if (CPF.Length != 11)
                 return false;
-            tempCpf = cpf.Substring(0, 9);
+            tempCpf = CPF.Substring(0, 9);
             soma = 0;
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 0; i < 9; i++)
                 soma += int.Parse(tempCpf[i].ToString()) * multiplicador1[i];
             resto = soma % 11;
             if (resto < 2)
@@ -70,7 +73,7 @@ namespace Passageiro.Servicos
             else
                 resto = 11 - resto;
             digito = digito + resto.ToString();
-            return cpf.EndsWith(digito);
+            return CPF.EndsWith(digito);
         }
 
     }

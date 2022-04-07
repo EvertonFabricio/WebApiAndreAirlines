@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Aeronave.Servicos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aeronave.Controllers
@@ -20,14 +19,15 @@ namespace Aeronave.Controllers
         public ActionResult<List<Model.Aeronave>> Get() =>
             _aeronaveServicos.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetAeronave")]
-        public ActionResult<Model.Aeronave> Get(string id)
+       // [HttpGet("{id:length(24)}", Name = "GetAeronave")]
+        [HttpGet("Registro", Name = "GetAeronave")]
+        public ActionResult<Model.Aeronave> Get(string registro)
         {
-            var aeronave = _aeronaveServicos.Get(id);
+            var aeronave = _aeronaveServicos.Get(registro.ToUpper());
 
             if (aeronave == null)
             {
-                return NotFound();
+                return NotFound("Aeronave não se encontra cadastrada.");
             }
 
             return aeronave;
@@ -44,7 +44,7 @@ namespace Aeronave.Controllers
             }
             else
             {
-                return NotFound();
+                return Conflict("Cadastro não concluído. Registro da Aeronave já encontra-se cadastrado. Tente novamente.");
             }
 
             return CreatedAtRoute("GetAeronave", new { id = aeronave.Id.ToString() }, aeronave);

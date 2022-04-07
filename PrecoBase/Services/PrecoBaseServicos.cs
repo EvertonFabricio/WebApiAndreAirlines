@@ -14,6 +14,8 @@ namespace PrecoBase.Services
             var precobase = new MongoClient(settings.ConnectionString);
             var database = precobase.GetDatabase(settings.DatabaseName);
             _precobase = database.GetCollection<Model.PrecoBase>(settings.PrecoBaseCollectionName);
+
+            
         }
 
         public List<Model.PrecoBase> Get() =>
@@ -24,8 +26,7 @@ namespace PrecoBase.Services
 
         public Model.PrecoBase Create(Model.PrecoBase precobase)
         {
-            _precobase.InsertOne(precobase
-                );
+            _precobase.InsertOne(precobase);
             return precobase;
         }
 
@@ -35,6 +36,8 @@ namespace PrecoBase.Services
 
         public void Remove(string id) =>
             _precobase.DeleteOne(precobase => precobase.Id == id);
+
+
 
     }
 }

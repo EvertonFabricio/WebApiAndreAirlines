@@ -10,21 +10,21 @@ namespace PrecoBase.Controllers
     [ApiController]
     public class PrecoBaseController : ControllerBase
     {
-        private readonly PrecoBaseServicos _precobaseService;
+        private readonly PrecoBaseServicos _precobaseServicos;
 
         public PrecoBaseController(PrecoBaseServicos precobaseservice)
         {
-            _precobaseService = precobaseservice;
+            _precobaseServicos = precobaseservice;
         }
 
         [HttpGet]
         public ActionResult<List<Model.PrecoBase>> Get() =>
-            _precobaseService.Get();
+            _precobaseServicos.Get();
 
         [HttpGet("{id:length(24)}", Name = "GetPrecoBase")]
         public ActionResult<Model.PrecoBase> Get(string id)
         {
-            var precobase = _precobaseService.Get(id);
+            var precobase = _precobaseServicos.Get(id);
 
             if (precobase == null)
                 return NotFound();
@@ -35,19 +35,20 @@ namespace PrecoBase.Controllers
         [HttpPost]
         public ActionResult<Model.PrecoBase> Create(Model.PrecoBase precobase)
         {
-            _precobaseService.Create(precobase);
+            
+            _precobaseServicos.Create(precobase);
             return CreatedAtRoute("GetPrecoBase", new { id = precobase.Id.ToString() }, precobase);
         }
 
         [HttpPut("{id:length(24)}")]
         public IActionResult Update(string id, Model.PrecoBase putPrecoBase)
         {
-            var precobase = _precobaseService.Get(id);
+            var precobase = _precobaseServicos.Get(id);
 
             if (precobase == null)
                 return NotFound();
 
-            _precobaseService.Update(id, putPrecoBase);
+            _precobaseServicos.Update(id, putPrecoBase);
 
             return NoContent();
         }
@@ -55,12 +56,12 @@ namespace PrecoBase.Controllers
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
-            var precobase = _precobaseService.Get(id);
+            var precobase = _precobaseServicos.Get(id);
 
             if (precobase == null)
                 return NotFound();
 
-            _precobaseService.Remove(precobase.Id);
+            _precobaseServicos.Remove(precobase.Id);
 
             return NoContent();
         }

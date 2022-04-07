@@ -21,16 +21,17 @@ namespace Aeronave.Servicos
         public List<Model.Aeronave> Get() =>
             _aeronave.Find(aeronave => true).ToList();
 
-        public Model.Aeronave Get(string id) =>
-            _aeronave.Find(aeronave => aeronave.Id == id).FirstOrDefault();
+        public Model.Aeronave Get(string registro) =>
+            _aeronave.Find(aeronave => aeronave.Registro == registro.ToUpper()).FirstOrDefault();
 
-        public Model.Aeronave ChecarRegistro(string Registro) =>
-            _aeronave.Find(aeronave => aeronave.Registro == Registro).FirstOrDefault();
+        public Model.Aeronave ChecarRegistro(string registro) =>
+            _aeronave.Find(aeronave => aeronave.Registro == registro.ToUpper()).FirstOrDefault();
 
-        public Model.Aeronave Create(Model.Aeronave Aeronave)
+        public Model.Aeronave Create(Model.Aeronave aeronave)
         {
-            _aeronave.InsertOne(Aeronave);
-            return Aeronave;
+            aeronave.Registro = aeronave.Registro.ToUpper();
+            _aeronave.InsertOne(aeronave);
+            return aeronave;
         }
 
         public void Update(string id, Model.Aeronave upAeronave) =>

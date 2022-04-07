@@ -17,7 +17,7 @@ namespace Model
         public Passageiro Passageiro { get; set; }
         public PrecoBase PrecoBase { get; set; }
         public decimal ValorTotal { get; set; }
-        public decimal PromocaoPorcentagem { get; set; }
+        public decimal PorcentagemDesconto { get; set; }
         public Classe Classe { get; set; }
 
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]

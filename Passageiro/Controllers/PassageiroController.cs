@@ -21,13 +21,13 @@ namespace Passageiro.Controllers
         public ActionResult<List<Model.Passageiro>> Get() =>
             _passageiroServicos.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetPassageiro")]
-        public ActionResult<Model.Passageiro> Get(string id)
+        [HttpGet("CPF", Name = "GetPassageiro")]
+        public ActionResult<Model.Passageiro> Get(string CPF)
         {
-            var passageiro = _passageiroServicos.Get(id);
+            var passageiro = _passageiroServicos.Get(CPF);
 
             if (passageiro == null)
-                return NotFound();
+                return NotFound("Passageiro não Encontrado.");
 
             return passageiro;
         }
@@ -46,7 +46,7 @@ namespace Passageiro.Controllers
                 }
                 else
                 {
-                    return Conflict("CPF já esta cadastrado");
+                    return Conflict("Passageiro já está cadastrado");
                 }
             }
             else
