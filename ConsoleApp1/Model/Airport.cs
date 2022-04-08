@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjAppDapper.Model
+namespace GetAirport_1.Model
 {
     public class Airport
     {

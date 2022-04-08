@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using ProjAppDapper.Config;
-using ProjAppDapper.Model;
+using ImportarCsv.Config;
+using Model;
 
-namespace ProjAppDapper.Repository
+namespace ImportarCsv.Repository
 {
     public class AirportRepository : IAirportRepository
     {

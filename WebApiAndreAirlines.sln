@@ -35,7 +35,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reserva", "Reserva\Reserva.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{126969C2-8C68-471B-B4A1-A61F808B15B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportarCsv", "ImportarCsv\ImportarCsv.csproj", "{9C788FE8-30A3-4065-A29C-ABD844C53B19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImportarCsv", "ImportarCsv\ImportarCsv.csproj", "{9C788FE8-30A3-4065-A29C-ABD844C53B19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetAirportEntityFramework", "GetAirportEntityFramework\GetAirportEntityFramework.csproj", "{2BE81042-767C-4C1D-95F0-7A3BF7AF6745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetAirport_Dapper", "GetAirport_Dapper\GetAirport_Dapper.csproj", "{F19AA8B3-14A0-433D-BE59-40143000D872}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{9C788FE8-30A3-4065-A29C-ABD844C53B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C788FE8-30A3-4065-A29C-ABD844C53B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C788FE8-30A3-4065-A29C-ABD844C53B19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE81042-767C-4C1D-95F0-7A3BF7AF6745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE81042-767C-4C1D-95F0-7A3BF7AF6745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE81042-767C-4C1D-95F0-7A3BF7AF6745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE81042-767C-4C1D-95F0-7A3BF7AF6745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19AA8B3-14A0-433D-BE59-40143000D872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19AA8B3-14A0-433D-BE59-40143000D872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19AA8B3-14A0-433D-BE59-40143000D872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19AA8B3-14A0-433D-BE59-40143000D872}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using ProjAppDapper.Model;
-using ProjAppDapper.Service;
+using Model;
+using ImportarCsv.Service;
 
-namespace ProjAppDapper
+namespace ImportarCsv
 {
     internal class Program
     {
@@ -13,7 +13,7 @@ namespace ProjAppDapper
                 try
                 {
                     StreamReader lerArquivo = new StreamReader(@"C:\Users\Everton Fabricio\Desktop\WebApiAndreAirlines\WebApiAndreAirlines\bin\Debug\net5.0\Data\Dados.csv");
-                    
+
                     string line;
                     do
                     {
@@ -33,6 +33,8 @@ namespace ProjAppDapper
                         }
                     } while (line != null);
                     lerArquivo.Close();
+
+                    Console.WriteLine("Dados importados com sucesso!");
                 }
                 catch (Exception erro)
                 {

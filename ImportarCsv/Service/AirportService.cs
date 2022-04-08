@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjAppDapper.Model;
-using ProjAppDapper.Repository;
+using Model;
+using ImportarCsv.Repository;
 
-namespace ProjAppDapper.Service
+namespace ImportarCsv.Service
 {
     public class AirportService
     {

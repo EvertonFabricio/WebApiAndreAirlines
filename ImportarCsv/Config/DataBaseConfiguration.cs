@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
-namespace ProjAppDapper.Config
+namespace ImportarCsv.Config
 {
     public class DataBaseConfiguration
     {
