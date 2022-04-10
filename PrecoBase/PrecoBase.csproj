@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Aeroporto\Aeroporto.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 

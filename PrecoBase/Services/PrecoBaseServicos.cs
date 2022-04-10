@@ -2,6 +2,7 @@
 using PrecoBase.Util;
 using Model;
 using MongoDB.Driver;
+using System.Threading.Tasks;
 
 namespace PrecoBase.Services
 {
@@ -23,6 +24,8 @@ namespace PrecoBase.Services
 
         public Model.PrecoBase Get(string id) =>
             _precobase.Find<Model.PrecoBase>(precobase => precobase.Id == id).FirstOrDefault();
+
+
 
         public Model.PrecoBase Create(Model.PrecoBase precobase)
         {

@@ -22,6 +22,7 @@ namespace GetAirportEntityFramework.Controllers
         }
 
         // GET: api/Airports
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Airport>>> GetAirport()
         {
