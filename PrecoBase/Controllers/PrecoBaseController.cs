@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using PrecoBase.Services;
-using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Model;
+using PrecoBase.Servicos;
 
 namespace PrecoBase.Controllers
 {
@@ -33,10 +32,10 @@ namespace PrecoBase.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Model.PrecoBase> Create(Model.PrecoBase precobase)
+        public async Task<ActionResult<Model.PrecoBase>> CreateAsync(Model.PrecoBase precobase)
         {
             
-            _precobaseServicos.Create(precobase);
+            precobase = await _precobaseServicos.CreateAsync(precobase);
             return CreatedAtRoute("GetPrecoBase", new { id = precobase.Id.ToString() }, precobase);
         }
 

@@ -3,6 +3,7 @@ using Voo.Servicos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
+using System.Threading.Tasks;
 
 namespace Voo.Controllers
 {
@@ -33,10 +34,10 @@ namespace Voo.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Model.Voo> Create(Model.Voo Voo)
+        public async Task<ActionResult<Model.Voo>> CreateAsync(Model.Voo voo)
         {
-            _vooService.Create(Voo);
-            return CreatedAtRoute("GetVoo", new { id = Voo.Id.ToString() }, Voo);
+            voo = await _vooService.CreateAsync(voo);
+            return CreatedAtRoute("GetVoo", new { id = voo.Id.ToString() }, voo);
         }
 
         [HttpPut("{id:length(24)}")]

@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Aeronave.Config;
 using Aeronave.Servicos;
 using Aeronave.Util;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace Aeronave
@@ -29,12 +33,33 @@ namespace Aeronave
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors();//incluido pra funcionar o jwt
             services.AddControllers();
+            var key = Encoding.ASCII.GetBytes(Settings.Secret);//incluido pra funcionar o jwt
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Aeronave", Version = "v1" });
             });
+            
+            services.AddAuthentication(x =>//incluido pra funcionar o jwt
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+           .AddJwtBearer(x =>//incluido pra funcionar o jwt
+           {
+               x.RequireHttpsMetadata = false;
+               x.SaveToken = true;
+               x.TokenValidationParameters = new TokenValidationParameters
+               {
+                   ValidateIssuerSigningKey = true,
+                   IssuerSigningKey = new SymmetricSecurityKey(key),
+                   ValidateIssuer = false,
+                   ValidateAudience = false
+               };
+           });
+
             services.Configure<AeronaveDatabase>(
                Configuration.GetSection(nameof(AeronaveDatabase)));
 
@@ -57,6 +82,16 @@ namespace Aeronave
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //bloco incluido pra funcionar o jwt
+            app.UseCors(x => x
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
+
+            app.UseAuthentication();
+            //até aqui
+
 
             app.UseAuthorization();
 

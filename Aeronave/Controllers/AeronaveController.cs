@@ -20,7 +20,7 @@ namespace Aeronave.Controllers
             _aeronaveServicos.Get();
 
        // [HttpGet("{id:length(24)}", Name = "GetAeronave")]
-        [HttpGet("Registro", Name = "GetAeronave")]
+        [HttpGet("{Registro}", Name = "GetAeronave")]
         public ActionResult<Model.Aeronave> Get(string registro)
         {
             var aeronave = _aeronaveServicos.Get(registro.ToUpper());

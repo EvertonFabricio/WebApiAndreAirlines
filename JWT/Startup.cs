@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,13 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using PrecoBase.Servicos;
-using PrecoBase.Util;
-using Microsoft.EntityFrameworkCore;
 
-namespace PrecoBase
+namespace JWT
 {
     public class Startup
     {
@@ -34,17 +30,8 @@ namespace PrecoBase
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PrecoBase", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "JWT", Version = "v1" });
             });
-            services.Configure<PrecoBaseDatabase>(
-                Configuration.GetSection(nameof(PrecoBaseDatabase)));
-
-            services.AddSingleton<IPrecoBaseDatabase>(sp =>
-                    sp.GetRequiredService<IOptions<PrecoBaseDatabase>>().Value);
-
-            services.AddSingleton<PrecoBaseServicos>();
-
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +41,7 @@ namespace PrecoBase
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PrecoBase v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "JWT v1"));
             }
 
             app.UseHttpsRedirection();

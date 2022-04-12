@@ -21,7 +21,7 @@ namespace Aeroporto.Controllers
         public ActionResult<List<Model.Aeroporto>> Get() =>
             _aeroportoServicos.Get();
 
-        [HttpGet("Iata", Name = "GetAeroporto")]
+        [HttpGet("{Iata}", Name = "GetAeroporto")]
         public ActionResult<Model.Aeroporto> Get(string Iata)
         {
             var aeroporto = _aeroportoServicos.Get(Iata);

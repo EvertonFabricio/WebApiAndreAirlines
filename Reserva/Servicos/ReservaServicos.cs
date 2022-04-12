@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Reserva.Util;
-using Model;
 using MongoDB.Driver;
+using Reserva.Util;
 
 namespace Reserva.Servicos
 {
