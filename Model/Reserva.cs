@@ -15,7 +15,6 @@ namespace Model
         public string Id { get; set; }
         public Voo Voo { get; set; }
         public Passageiro Passageiro { get; set; }
-        public PrecoBase PrecoBase { get; set; }
         public Classe Classe { get; set; }
         public decimal PorcentagemDesconto { get; set; }
         public decimal ValorTotal { get; set; }

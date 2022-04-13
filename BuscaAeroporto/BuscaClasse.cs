@@ -9,21 +9,21 @@ using Newtonsoft.Json;
 
 namespace Consultas
 {
-    public class BuscaPreco
+    public class BuscaClasse
     {
         static readonly HttpClient client = new HttpClient();
 
 
-        public static async Task<PrecoBase> GetAeronave(string Registro)
+        public static async Task<Classe> Classe(string Codigo)
         {
             try
             {
-                HttpResponseMessage respostaAPI = await client.GetAsync("https://localhost:44338/api/PrecoBase/" + Registro);
+                HttpResponseMessage respostaAPI = await client.GetAsync("https://localhost:44389/api/Classe/" + Codigo);
                 respostaAPI.EnsureSuccessStatusCode();
                 string corpoResposta = await respostaAPI.Content.ReadAsStringAsync();
-                var preco = JsonConvert.DeserializeObject<PrecoBase>(corpoResposta);
+                var aeronave = JsonConvert.DeserializeObject<Classe>(corpoResposta);
 
-                return preco;
+                return aeronave;
 
             }
             catch (HttpRequestException)

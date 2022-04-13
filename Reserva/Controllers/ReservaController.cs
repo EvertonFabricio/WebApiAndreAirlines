@@ -2,6 +2,7 @@
 using Reserva.Servicos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Reserva.Controllers
 {
@@ -33,10 +34,11 @@ namespace Reserva.Controllers
             return reserva;
         }
 
+       
         [HttpPost]
-        public ActionResult<Model.Reserva> Create(Model.Reserva reserva)
+        public async Task<ActionResult<Model.Reserva>> CreateAsync(Model.Reserva reserva)
         {
-            _reservaServicos.Create(reserva);
+            reserva = await _reservaServicos.CreateAsync(reserva);
 
             return CreatedAtRoute("GetReserva", new { id = reserva.Id.ToString() }, reserva);
         }

@@ -22,10 +22,10 @@ namespace Voo.Controllers
         public ActionResult<List<Model.Voo>> Get() =>
             _vooService.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetVoo")]
-        public ActionResult<Model.Voo> get(string id)
+        [HttpGet("{NumeroVoo}", Name = "GetVoo")]
+        public ActionResult<Model.Voo> get(string NumeroVoo)
         {
-            var voo = _vooService.Get(id);
+            var voo = _vooService.Get(NumeroVoo);
 
             if (voo == null)
                 return NotFound();
@@ -33,11 +33,12 @@ namespace Voo.Controllers
             return voo;
         }
 
+     
         [HttpPost]
         public async Task<ActionResult<Model.Voo>> CreateAsync(Model.Voo voo)
         {
             voo = await _vooService.CreateAsync(voo);
-            return CreatedAtRoute("GetVoo", new { id = voo.Id.ToString() }, voo);
+            return CreatedAtRoute("GetVoo", new { numeroVoo = voo.NumeroVoo.ToString() }, voo);
         }
 
         [HttpPut("{id:length(24)}")]

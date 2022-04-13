@@ -21,9 +21,10 @@ namespace Voo.Servicos
         public List<Model.Voo> Get() =>
             _voo.Find(voo => true).ToList();
 
-        public Model.Voo Get(string id) =>
-            _voo.Find<Model.Voo>(voo => voo.Id == id).FirstOrDefault();
+        public Model.Voo Get(string NumeroVoo) =>
+            _voo.Find(voo => voo.NumeroVoo == NumeroVoo).FirstOrDefault();
 
+     
         public async Task<Model.Voo> CreateAsync(Model.Voo voo)
         {
             var retornoOrigem = await Origem.AeroportoOrigem(voo.Origem.Iata.ToUpper());

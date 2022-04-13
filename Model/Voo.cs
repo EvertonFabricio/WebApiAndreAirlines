@@ -13,15 +13,16 @@ namespace Model
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
-        public int Numero { get; set; }
+        public string NumeroVoo { get; set; }
         public Aeroporto Origem { get; set; }
         public Aeroporto Destino { get; set; }
         public Aeronave Aeronave { get; set; }
+        public decimal PrecoBase { get; set; }
 
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
         public DateTime DataEmbarque { get; set; }
 
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DataDesembarque { get; set; }
+
     }
 }

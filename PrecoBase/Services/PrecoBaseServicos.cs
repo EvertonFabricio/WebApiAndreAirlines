@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Consultas;
+using Model;
 using MongoDB.Driver;
 using PrecoBase.Util;
 
@@ -26,7 +27,7 @@ namespace PrecoBase.Servicos
             _precobase.Find(precobase => precobase.Id == id).FirstOrDefault();
 
 
-
+       
         public async Task<Model.PrecoBase> CreateAsync(Model.PrecoBase precobase)
         {
 
