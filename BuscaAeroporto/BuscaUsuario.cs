@@ -18,7 +18,7 @@ namespace Consultas
         {
             try
             {
-                HttpResponseMessage respostaAPI = await client.GetAsync("https://localhost:44376/api/Usuario/" + username + password);
+                HttpResponseMessage respostaAPI = await client.GetAsync("https://localhost:44376/api/Usuario/" + username +","+ password);
                 respostaAPI.EnsureSuccessStatusCode();
                 string corpoResposta = await respostaAPI.Content.ReadAsStringAsync();
                 var usuario = JsonConvert.DeserializeObject<Usuario>(corpoResposta);

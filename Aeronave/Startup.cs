@@ -28,7 +28,7 @@ namespace Aeronave
         {
             services.AddCors();//incluido pra funcionar o jwt
             services.AddControllers();
-            var key = Encoding.ASCII.GetBytes(Settings.Secret);//incluido pra funcionar o jwt
+            var key = Encoding.ASCII.GetBytes(Settings.ChaveSecreta);//incluido pra funcionar o jwt
 
             services.AddSwaggerGen(c =>
             {

@@ -27,7 +27,7 @@ namespace Aeronave.Controllers
 
             if (aeronave == null)
             {
-                return NotFound("Aeronave não se encontra cadastrada.");
+                return NotFound("Aeronave não está cadastrada.");
             }
 
             return aeronave;
@@ -47,7 +47,7 @@ namespace Aeronave.Controllers
                 return Conflict("Cadastro não concluído. Registro da Aeronave já encontra-se cadastrado. Tente novamente.");
             }
 
-            return CreatedAtRoute("GetAeronave", new { id = aeronave.Id.ToString() }, aeronave);
+            return CreatedAtRoute("GetAeronave", new { registro = aeronave.Registro.ToString() }, aeronave);
         }
 
         [HttpPut("{id:length(24)}")]

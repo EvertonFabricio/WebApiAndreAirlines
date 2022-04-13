@@ -34,7 +34,20 @@ namespace Usuario.Controllers
             return usuario;
         }
 
-       
+        [HttpGet("{Username},{Password}", Name = "GetLogin")]
+        public ActionResult<Model.Usuario> GetLogin(string Username, string Password)
+        {
+            var usuario = _usuarioServicos.GetLogin(Username, Password);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return usuario;
+        }
+
+
         [HttpPost]
         public ActionResult<Model.Usuario> Create(Model.Usuario usuario)
         {

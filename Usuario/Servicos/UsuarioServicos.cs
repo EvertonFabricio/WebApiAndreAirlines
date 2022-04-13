@@ -21,6 +21,10 @@ namespace Usuario.Servicos
 
         public Model.Usuario Get(string id) =>
             _usuario.Find(usuario => usuario.Id == id).FirstOrDefault();
+        
+        
+        public Model.Usuario GetLogin(string Username, string Password) =>
+            _usuario.Find(usuario => usuario.Username.ToLower() == Username.ToLower() && usuario.Password == Password).FirstOrDefault();
 
         public Model.Usuario Create(Model.Usuario usuario)
         {
