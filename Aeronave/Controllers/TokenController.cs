@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Aeronave.Repositories;
-using Aeronave.Services;
+using Aeronave.Servicos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,25 +17,25 @@ namespace Aeronave.Controllers
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Authenticate([FromBody] User model)
+        public async Task<ActionResult<dynamic>> Authenticate([FromBody] Usuario model)
         {
             // Recupera o usuário
-            var user = UserRepository.Get(model.Username, model.Password);
+            var usuario = UsuarioRepository.Get(model.Username, model.Password);
 
             // Verifica se o usuário existe
-            if (user == null)
+            if (usuario == null)
                 return NotFound(new { message = "Usuário ou senha inválidos" });
 
             // Gera o Token
-            var token = TokenService.GenerateToken(user);
+            var token = TokenServicos.GenerateToken(usuario);
 
             // Oculta a senha
-            user.Password = "";
+            usuario.Password = "";
 
             // Retorna os dados
             return new
             {
-                user = user,
+                usuario = usuario,
                 token = token
             };
         }

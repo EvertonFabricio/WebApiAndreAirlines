@@ -9,21 +9,21 @@ using Newtonsoft.Json;
 
 namespace Consultas
 {
-    public class BuscaClasse
+    public class BuscaUsuario
     {
         static readonly HttpClient client = new HttpClient();
 
 
-        public static async Task<Classe> Classe(string Codigo)
+        public static async Task<Usuario> Usuario(string username, string password)
         {
             try
             {
-                HttpResponseMessage respostaAPI = await client.GetAsync("https://localhost:44389/api/Classe/" + Codigo);
+                HttpResponseMessage respostaAPI = await client.GetAsync("https://localhost:44376/api/Usuario/" + username + password);
                 respostaAPI.EnsureSuccessStatusCode();
                 string corpoResposta = await respostaAPI.Content.ReadAsStringAsync();
-                var classe = JsonConvert.DeserializeObject<Classe>(corpoResposta);
+                var usuario = JsonConvert.DeserializeObject<Usuario>(corpoResposta);
 
-                return classe;
+                return usuario;
 
             }
             catch (HttpRequestException)

@@ -6,11 +6,11 @@ using Aeronave.Config;
 using Microsoft.IdentityModel.Tokens;
 using Model;
 
-namespace Aeronave.Services
+namespace Aeronave.Servicos
 {
-    public class TokenService
+    public class TokenServicos
     {
-        public static string GenerateToken(User user)
+        public static string GenerateToken(Usuario user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Settings.Secret);

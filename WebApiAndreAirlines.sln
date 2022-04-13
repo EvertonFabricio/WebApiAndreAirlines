@@ -44,6 +44,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consultas", "BuscaAeroporto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classe", "Classe\Classe.csproj", "{055C5D5E-C35B-48FA-B7CC-FF4EE7AF98D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Usuario", "Usuario\Usuario.csproj", "{705F7F14-FD4F-4BB7-970C-F111BCEAE165}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{055C5D5E-C35B-48FA-B7CC-FF4EE7AF98D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{055C5D5E-C35B-48FA-B7CC-FF4EE7AF98D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{055C5D5E-C35B-48FA-B7CC-FF4EE7AF98D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{705F7F14-FD4F-4BB7-970C-F111BCEAE165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{705F7F14-FD4F-4BB7-970C-F111BCEAE165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{705F7F14-FD4F-4BB7-970C-F111BCEAE165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{705F7F14-FD4F-4BB7-970C-F111BCEAE165}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

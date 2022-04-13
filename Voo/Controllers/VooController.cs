@@ -38,6 +38,10 @@ namespace Voo.Controllers
         public async Task<ActionResult<Model.Voo>> CreateAsync(Model.Voo voo)
         {
             voo = await _vooService.CreateAsync(voo);
+            voo.Origem.Iata = voo.Origem.Iata.ToUpper();
+            voo.Destino.Iata = voo.Destino.Iata.ToUpper();
+            voo.Aeronave.Registro = voo.Aeronave.Registro.ToUpper();
+
             return CreatedAtRoute("GetVoo", new { numeroVoo = voo.NumeroVoo.ToString() }, voo);
         }
 
