@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using Aeronave.Servicos;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Aeronave.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class AeronaveController : ControllerBase
@@ -16,11 +19,13 @@ namespace Aeronave.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "funcionario,gerente")]
         public ActionResult<List<Model.Aeronave>> Get() =>
             _aeronaveServicos.Get();
 
        // [HttpGet("{id:length(24)}", Name = "GetAeronave")]
         [HttpGet("{Registro}", Name = "GetAeronave")]
+        [Authorize(Roles = "funcionario,gerente")]
         public ActionResult<Model.Aeronave> Get(string registro)
         {
             var aeronave = _aeronaveServicos.Get(registro.ToUpper());
@@ -34,6 +39,7 @@ namespace Aeronave.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente")]
         public ActionResult<Model.Aeronave> Create(Model.Aeronave aeronave)
         {
             var registro = _aeronaveServicos.ChecarRegistro(aeronave.Registro);
@@ -51,6 +57,8 @@ namespace Aeronave.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
+        [Authorize(Roles = "gerente")]
+
         public IActionResult Update(string id, Model.Aeronave upAeronave)
         {
             var aeronave = _aeronaveServicos.Get(id);
@@ -66,6 +74,7 @@ namespace Aeronave.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
+        [Authorize(Roles = "gerente")]
         public IActionResult Delete(string id)
         {
             var aeronave = _aeronaveServicos.Get(id);

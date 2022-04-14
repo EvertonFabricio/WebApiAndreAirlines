@@ -1,4 +1,5 @@
-﻿namespace Aeronave.Config
+﻿namespace Model
+
 {
     public static class Settings
     {

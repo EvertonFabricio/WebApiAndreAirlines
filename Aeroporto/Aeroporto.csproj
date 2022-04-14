@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BuscaAeroporto\Consultas.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 

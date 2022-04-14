@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Aeronave.Servicos;
+using Aeroporto.Servicos;
 using Consultas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
-namespace Aeronave.Controllers
+namespace Aeroporto.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class TokenController : ControllerBase

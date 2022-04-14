@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
@@ -7,6 +9,7 @@ using Passageiro.Servicos;
 
 namespace Passageiro.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class PassageiroController : ControllerBase
@@ -19,10 +22,12 @@ namespace Passageiro.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "funcionario,gerente")]
         public ActionResult<List<Model.Passageiro>> Get() =>
             _passageiroServicos.Get();
 
         [HttpGet("CPF", Name = "GetPassageiro")]
+        [Authorize(Roles = "funcionario,gerente")]
         public ActionResult<Model.Passageiro> Get(string CPF)
         {
             var passageiro = _passageiroServicos.Get(CPF);
@@ -34,6 +39,7 @@ namespace Passageiro.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente")]
         public async Task<ActionResult<Model.Passageiro>> Create(Model.Passageiro passageiro)
         {
             var checar = _passageiroServicos.ChecarCpf(passageiro.Cpf);
@@ -59,6 +65,7 @@ namespace Passageiro.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
+        [Authorize(Roles = "gerente")]
         public IActionResult Update(string id, Model.Passageiro passageiro)
         {
             if (passageiro == null)
@@ -70,6 +77,7 @@ namespace Passageiro.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
+        [Authorize(Roles = "gerente")]
         public IActionResult Delete(string id)
         {
             var passageiro = _passageiroServicos.Get(id);

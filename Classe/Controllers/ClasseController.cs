@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using Classe.Servicos;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Classe.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class ClasseController : ControllerBase
@@ -17,10 +20,12 @@ namespace Classe.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "funcionario,gerente")]
         public ActionResult<List<Model.Classe>> Get() =>
             _classeServicos.Get();
 
         [HttpGet("{Codigo}", Name = "GetClasse")]
+        [Authorize(Roles = "funcionario,gerente")]
         public ActionResult<Model.Classe> Get(string Codigo)
         {
             var classe = _classeServicos.Get(Codigo);
@@ -34,6 +39,7 @@ namespace Classe.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "gerente")]
         public ActionResult<Model.Classe> Create(Model.Classe classe)
         {
            _classeServicos.Create(classe);
@@ -41,6 +47,7 @@ namespace Classe.Controllers
         }
 
         [HttpPut("{Codigo}")]
+        [Authorize(Roles = "gerente")]
         public IActionResult Update(string Codigo, Model.Classe upClasse)
         {
             var classe = _classeServicos.Get(Codigo);
@@ -56,6 +63,7 @@ namespace Classe.Controllers
         }
 
         [HttpDelete("{Codigo}")]
+        [Authorize(Roles = "gerente")]
         public IActionResult Delete(string Codigo)
         {
             var classe = _classeServicos.Get(Codigo);

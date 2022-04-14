@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Model;
 
-namespace Aeronave.Servicos
+namespace Reserva.Servicos
 {
     public class TokenServicos
     {

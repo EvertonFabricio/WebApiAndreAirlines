@@ -1,5 +1,4 @@
 using System.Text;
-using Aeronave.Config;
 using Aeronave.Servicos;
 using Aeronave.Util;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Model;
 
 namespace Aeronave
 {
@@ -33,6 +33,32 @@ namespace Aeronave
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Aeronave", Version = "v1" });
+
+                // daqui pra baixo
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme."
+
+                }) ;
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                          {
+                              Reference = new OpenApiReference
+                              {
+                                  Type = ReferenceType.SecurityScheme,
+                                  Id = "Bearer"
+                              }
+                          },
+                         new string[] {}
+                    }
+                });
             });
             
             services.AddAuthentication(x =>//incluido pra funcionar o jwt
@@ -52,6 +78,7 @@ namespace Aeronave
                    ValidateAudience = false
                };
            });
+            //Até aqui é o bloco pra fazer autenticação no swagger
 
             services.Configure<AeronaveDatabase>(
                Configuration.GetSection(nameof(AeronaveDatabase)));
